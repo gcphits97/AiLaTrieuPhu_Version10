@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Login.View.MainActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/home_background"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            tools:ignore="ContentDescription"
+            android:layout_weight="2"
+            android:src="@drawable/logo" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <Button
+                    android:id="@+id/btnChoi"
+                    android:layout_width="wrap_content"
+                    android:text="@string/play"
+                    android:textAllCaps="false"
+                    android:visibility="gone"
+                    android:textColor="@color/colorWhite"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="@drawable/danger_button"
+                    android:layout_height="wrap_content" />
+                <LinearLayout
+                    android:id="@+id/khungDangNhap"
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent">
+                    <Button
+                        android:id="@+id/btnDangNhap"
+                        android:layout_width="wrap_content"
+                        android:text="@string/login"
+                        android:textAllCaps="false"
+                        android:layout_margin="5dp"
+                        android:textColor="@color/colorWhite"
+                        style="?android:attr/buttonBarButtonStyle"
+                        android:background="@drawable/danger_button"
+                        android:layout_height="wrap_content" />
+                    <Button
+                        android:id="@+id/btnChoiNgay"
+                        android:layout_width="wrap_content"
+                        android:text="@string/play_now"
+                        android:textAllCaps="false"
+                        style="?android:attr/buttonBarButtonStyle"
+                        android:layout_margin="5dp"
+                        android:textColor="@color/colorWhite"
+                        android:background="@drawable/primary_button"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+            </FrameLayout>
+            <Button
+                android:id="@+id/btnDiemCao"
+                android:layout_width="wrap_content"
+                android:text="@string/hight_score"
+                android:textAllCaps="false"
+                android:layout_margin="5dp"
+                android:textColor="@color/colorWhite"
+                android:background="@drawable/dark_button"
+                android:layout_height="wrap_content" />
+            <Button
+                android:id="@+id/btnThongTin"
+                android:layout_width="wrap_content"
+                android:text="@string/about"
+                android:textAllCaps="false"
+                android:layout_margin="5dp"
+                android:textColor="@color/colorWhite"
+                android:background="@drawable/dark_button"
+                android:layout_height="wrap_content" />
+            <Button
+                android:id="@+id/btnDangXuat"
+                android:layout_width="wrap_content"
+                android:text="@string/logout"
+                android:layout_margin="5dp"
+                android:visibility="gone"
+                android:textAllCaps="false"
+                android:textColor="@color/colorWhite"
+                android:background="@drawable/dark_button"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </LinearLayout>
+    <FrameLayout
+        android:id="@+id/frameBackgroundMain"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:background="@color/colorPrimaryTransparent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+        <LinearLayout
+            android:id="@+id/fragmentParentMain"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginEnd="50dp"
+            android:layout_marginBottom="20dp"
+            android:layout_height="match_parent"/>
+    </FrameLayout>
+</FrameLayout>

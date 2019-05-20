@@ -1,0 +1,81 @@
+<resources>
+    <string name="app_name">Ai là triệu phú</string>
+    // start main menu
+    <string name="login">Đăng nhập</string>
+    <string name="play_now">Chơi ngay</string>
+    <string name="play">Chơi</string>
+    <string name="hight_score">Điểm cao</string>
+    <string name="about">Thông tin</string>
+    <string name="logout">Đăng xuất</string>
+    //end main menu
+
+    //start fragment login
+    <string name="username">Tên đăng nhập</string>
+    <string name="password">Mật khẩu</string>
+    <string name="dialog_login_button">Đăng nhập</string>
+    <string name="dialog_cancel_button">Huỷ</string>
+    <string name="title_login">Đăng nhập</string>
+    <string name="invalid_login_username">Tên đăng nhập không tồn tại</string>
+    <string name="invalid_login_password">Mật khẩu không hợp lệ!</string>
+    <string name="text_dang_ky">Đăng ký</string>
+    <string name="text_cau_hoi_dang_ky">Bạn chưa có tài khoản?</string>
+    <string name="connection_failed">Tài khoản không tồn tại hoặc kết nối internet không ổn định. Vui lòng thử lại</string>
+    <string name="login_failed">Đăng nhập thất bại! Vui lòng thử lại</string>
+    <string name="login_success">Xin chào</string>
+    //end fragment login
+    //start fragment register
+    <string name="register_name">Tên đăng nhập</string>
+    <string name="register_password">Mật khẩu</string>
+    <string name="dialog_register_button">Đăng ký</string>
+    <string name="dialog_register_cancel_button">Huỷ</string>
+    <string name="invalid_register_username">Tên đăng nhập không hợp lệ!</string>
+    <string name="invalid_register_password">Mật khẩu phải lớn hơn 5 ký tự</string>
+    <string name="title_register">Đăng ký</string>
+    <string name="text_dang_nhap">Đăng nhập</string>
+    <string name="text_cau_hoi_dang_nhap">Bạn đã có tài khoản?</string>
+    <string name="hoten">Họ tên</string>
+    <string name="register_failed">Đăng ký thất bại! Vui lòng thử lại</string>
+    <string name="connection_register_failed">Tài khoản đã được sử dụng hoặc kết nối internet không ổn định. Vui lòng thử lại</string>
+    <string name="register_success">Đăng ký thành công. Hệ thống sẽ tự động đăng nhập</string>
+    //end fragment register
+
+    //start reward
+    <string name="p200k">200.000</string>
+    <string name="p400k">400.000</string>
+    <string name="p600k">600.000</string>
+    <string name="p1m">1.000.000</string>
+    <string name="p2m">2.000.000</string>
+    <string name="p3m">3.000.000</string>
+    <string name="p6m">6.000.000</string>
+    <string name="p10m">10.000.000</string>
+    <string name="p14m">14.000.000</string>
+    <string name="p22m">22.000.000</string>
+    <string name="p30m">30.000.000</string>
+    <string name="p40m">40.000.000</string>
+    <string name="p60m">60.000.000</string>
+    <string name="p85m">85.000.000</string>
+    <string name="p150m">150.000.000</string>
+
+    <string name="title_activity_login">Đăng nhập</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    //end reward
+
+    <string name="endgame">Dừng</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="game_over">Trò chơi kết thúc</string>
+    <string name="number_of_correct_answer">Số câu trả lời đúng:</string>
+    <string name="your_reward">Phần thưởng của bạn:</string>
+    <string name="question_stop_playing">Bạn có chắc chắn muốn dừng cuộc chơi tại đây?</string>
+    <string name="no">Không</string>
+    <string name="yes">Có</string>
+
+    <string name="url">http://10.0.3.2:8080/</string>
+    <string name="time">30s</string>
+
+    <string name="error_get_question">Error</string>
+</resources>

@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorDarkBlue"
+    android:gravity="center"
+    android:padding="20dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/title_login"
+        android:textAlignment="center"
+        android:textColor="@color/colorWhite"
+        android:textSize="20sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:text="@string/username"
+        android:textColor="@color/colorWhite"
+        android:textSize="15sp" />
+
+    <EditText
+        android:id="@+id/edtTenDangNhap"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/border_edit_text"
+        android:cursorVisible="true"
+        android:hint="@string/username"
+        android:padding="10dp"
+        android:textColor="@color/colorBlack"
+        android:textCursorDrawable="@null"
+        android:textSize="15sp"
+        tools:ignore="Autofill,TextFields" />
+
+    <TextView
+        android:id="@+id/txtLuuYTenDangNhapFormDangNhap"
+        android:layout_width="match_parent"
+        android:paddingStart="@dimen/padding_start_text"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorWhite"
+        android:textSize="12sp"
+        tools:ignore="RtlSymmetry" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:text="@string/password"
+        android:textColor="@color/colorWhite"
+        android:textSize="15sp" />
+
+    <EditText
+        android:id="@+id/edtMatKhau"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/border_edit_text"
+        android:cursorVisible="true"
+        android:hint="@string/password"
+        android:inputType="textPassword"
+        android:padding="10dp"
+        android:textColor="@color/colorBlack"
+        android:textCursorDrawable="@null"
+        android:textSize="15sp"
+        tools:ignore="Autofill" />
+
+    <TextView
+        android:id="@+id/txtLuuYMatKhauFormDangNhap"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/padding_start_text"
+        android:textColor="@color/colorWhite"
+        android:textSize="12sp"
+        tools:ignore="RtlSymmetry" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp">
+
+        <Button
+            android:id="@+id/btnDangNhap"
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:layout_height="35dp"
+            android:background="@drawable/primary_button"
+            android:text="@string/dialog_login_button"
+            android:textAllCaps="false"
+            android:textColor="@color/colorWhite"
+            android:textSize="12sp" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/btnHuy"
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:layout_height="35dp"
+            android:background="@drawable/dark_button"
+            android:text="@string/dialog_cancel_button"
+            android:textAllCaps="false"
+            android:textColor="@color/colorWhite"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorWhite"
+            android:paddingStart="5dp"
+            android:textStyle="bold"
+            android:paddingEnd="5dp"
+            android:text="@string/text_cau_hoi_dang_ky" />
+
+        <TextView
+            android:id="@+id/txtDangKy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/text_dang_ky"
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp"
+            android:textStyle="bold"
+            android:textColor="@color/colorRed" />
+
+    </LinearLayout>
+</LinearLayout>
