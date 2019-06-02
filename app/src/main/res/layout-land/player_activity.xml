@@ -10,7 +10,7 @@
         android:background="@drawable/home_background"
         android:baselineAligned="false"
         android:orientation="horizontal"
-        tools:context=".Player.View.PlayerActivity">
+        tools:context=".player.view.PlayerActivity">
 
         <LinearLayout
             android:layout_width="0dp"
@@ -65,7 +65,6 @@
                         android:id="@+id/txtCountDownTimer"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
-                        android:text="@string/time"
                         android:background="@drawable/time"
                         android:gravity="center"
                         android:textColor="@color/colorWhite"

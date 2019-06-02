@@ -17,10 +17,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".Information.InformationActivity" />
-        <activity android:name=".HighScore.HighScoreActivity" />
-        <activity android:name=".Player.View.PlayerActivity" />
-        <activity android:name=".Login.View.MainActivity">
+        <activity android:name=".information.InformationActivity"
+            android:configChanges="orientation|screenLayout"/>
+        <activity android:name=".highScore.HighScoreActivity"
+            android:configChanges="orientation|screenLayout"/>
+        <activity android:name=".player.view.PlayerActivity"
+            android:configChanges="orientation|screenLayout"/>
+        <activity android:name=".login.view.MainActivity"
+            android:configChanges="orientation|screenLayout">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

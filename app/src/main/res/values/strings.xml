@@ -74,8 +74,7 @@
     <string name="no">Không</string>
     <string name="yes">Có</string>
 
-    <string name="url">http://10.0.3.2:8080/</string>
-    <string name="time">30s</string>
-
-    <string name="error_get_question">Error</string>
+    <string name="error">Error</string>
+    <string name="error_get_question">Đã xảy ra lỗi trong quá trình lấy dữ liệu. Vui lòng thử lại</string>
+    <string name="get_argument_null">Đã xảy ra lỗi trong quá trình truyền dữ liệu.</string>
 </resources>

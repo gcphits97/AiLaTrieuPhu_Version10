@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HighScore.HighScoreActivity">
+    tools:context=".highScore.HighScoreActivity">
     <TextView
         android:text="Day la man hinh diem cao"
         android:textAlignment="center"

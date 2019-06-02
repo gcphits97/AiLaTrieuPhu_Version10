@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Information.InformationActivity">
+    tools:context=".information.InformationActivity">
     <TextView
         android:text="Day la man hinh thong tin"
         android:textAlignment="center"
