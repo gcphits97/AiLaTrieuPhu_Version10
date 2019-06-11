@@ -4,7 +4,7 @@
     <string name="login">Đăng nhập</string>
     <string name="play_now">Chơi ngay</string>
     <string name="play">Chơi</string>
-    <string name="hight_score">Điểm cao</string>
+    <!--<string name="hight_score">Điểm cao</string>-->
     <string name="about">Thông tin</string>
     <string name="logout">Đăng xuất</string>
     //end main menu
@@ -75,6 +75,19 @@
     <string name="yes">Có</string>
 
     <string name="error">Error</string>
-    <string name="error_get_question">Đã xảy ra lỗi trong quá trình lấy dữ liệu. Vui lòng thử lại</string>
-    <string name="get_argument_null">Đã xảy ra lỗi trong quá trình truyền dữ liệu.</string>
+    <string name="error_get_question">Đã xảy ra lỗi trong quá trình tải dữ liệu. Vui lòng thử lại</string>
+    <string name="error_put_data">Đã xảy ra lỗi trong quá trình truyền dữ liệu.</string>
+    <string name="high_score">Bảng xếp hạng</string>
+    <string name="stt">STT</string>
+    <string name="user_hs">Người chơi</string>
+    <string name="best_reward">Giải thưởng</string>
+    <string name="best_score">Số câu</string>
+    <string name="thoi_gian">Thời gian</string>
+    <string name="ty_le">Tỷ lệ</string>
+    <string name="error_high_score">Đã xảy ra lỗi trong quá trình tải dữ liệu!</string>
+    <string name="author_information">Game được phát triển bởi: Phạm Duy Phi</string>
+    <string name="ykien_donggop">Mọi ý kiến và đóng góp vui lòng liên hệ địa chỉ email: phamduyphi97@gmail.com</string>
+    <string name="app_info">Thông tin ứng dụng</string>
+    <string name="victory">Victory</string>
+    <string name="ok">Ok</string>
 </resources>

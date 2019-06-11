@@ -87,7 +87,7 @@
                     <Button
                         android:id="@+id/btnDiemCao"
                         android:layout_width="match_parent"
-                        android:text="@string/hight_score"
+                        android:text="@string/high_score"
                         android:textAllCaps="false"
                         android:layout_marginTop="5dp"
                         android:layout_marginBottom="5dp"
@@ -126,7 +126,7 @@
     </LinearLayout>
     <FrameLayout
         android:id="@+id/frameBackgroundMain"
-        android:visibility="invisible"
+        android:visibility="gone"
         android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="match_parent">

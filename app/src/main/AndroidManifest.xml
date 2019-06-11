@@ -18,13 +18,17 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity android:name=".information.InformationActivity"
-            android:configChanges="orientation|screenLayout"/>
+            android:configChanges="orientation|screenLayout"
+            android:screenOrientation="portrait"/>
         <activity android:name=".highScore.HighScoreActivity"
-            android:configChanges="orientation|screenLayout"/>
+            android:configChanges="orientation|screenLayout"
+            android:screenOrientation="portrait"/>
         <activity android:name=".player.view.PlayerActivity"
-            android:configChanges="orientation|screenLayout"/>
+            android:configChanges="orientation|screenLayout"
+            android:screenOrientation="portrait"/>
         <activity android:name=".login.view.MainActivity"
-            android:configChanges="orientation|screenLayout">
+            android:configChanges="orientation|screenLayout"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

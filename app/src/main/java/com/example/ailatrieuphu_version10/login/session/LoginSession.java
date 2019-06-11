@@ -6,10 +6,10 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
 public class LoginSession {
-    public static final String LOGGED_IN_PREF = "logged_in_status";
-    public static final String FULL_NAME = "full_name";
-    public static final String USERNAME = "username";
-    public static final String ID = "id";
+    private static final String LOGGED_IN_PREF = "logged_in_status";
+    private static final String FULL_NAME = "full_name";
+    private static final String USERNAME = "username";
+    private static final String ID = "id";
     private static SharedPreferences getPreferences(Context context) {
         return PreferenceManager.getDefaultSharedPreferences(context);
     }

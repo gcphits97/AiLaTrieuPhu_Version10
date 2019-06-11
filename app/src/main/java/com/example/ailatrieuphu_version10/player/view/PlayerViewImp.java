@@ -8,4 +8,5 @@ public interface PlayerViewImp {
     void getResult(boolean result, String rightAnswer);
     void moveToEndGameFragment();
     void showQuestion(List<QuestionModel> questionList);
+    void cancelCountDownTimer();
 }

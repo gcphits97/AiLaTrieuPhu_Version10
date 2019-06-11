@@ -25,7 +25,7 @@ public class PlayerPresenterModel implements PlayerPresenterImp {
 
     @Override
     public void getQuestionList() {
-        Call<List<QuestionModel>> call = APIClient.getQuestion().getQuestionList();
+        Call<List<QuestionModel>> call = APIClient.questionCRUD().getQuestionList();
         call.enqueue(new Callback<List<QuestionModel>>() {
             @Override
             public void onResponse(Call<List<QuestionModel>> call, Response<List<QuestionModel>> response) {

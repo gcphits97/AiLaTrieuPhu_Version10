@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,14 +15,22 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.ailatrieuphu_version10.R;
+import com.example.ailatrieuphu_version10.highScore.HighScoreModel;
+import com.example.ailatrieuphu_version10.login.session.LoginSession;
 import com.example.ailatrieuphu_version10.login.view.MainActivity;
 import com.example.ailatrieuphu_version10.player.view.PlayerActivity;
+import com.example.ailatrieuphu_version10.retrofit.APIClient;
 
 import java.util.Objects;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class EndGameFragment extends Fragment implements View.OnClickListener {
     TextView txtNumberOfCorrectAnswer, txtYourReward;
     ImageButton imgButtonHome, imgButtonRefresh;
+    private String socau, giaithuong;
     @SuppressLint("SetTextI18n")
     @Nullable
     @Override
@@ -33,11 +42,27 @@ public class EndGameFragment extends Fragment implements View.OnClickListener {
         imgButtonRefresh = myView.findViewById(R.id.imgButtonRefresh);
 
         if (getArguments() != null) {
-            txtNumberOfCorrectAnswer.setText(getArguments().getString("socau"));
-            txtYourReward.setText(getArguments().getString("giaithuong")+" vnđ");
+            socau = getArguments().getString("socau");
+            giaithuong = getArguments().getString("giaithuong");
         } else {
-            Toast.makeText(getContext(), Objects.requireNonNull(getContext()).getText(R.string.get_argument_null), Toast.LENGTH_LONG).show();
+            Toast.makeText(getContext(), Objects.requireNonNull(getContext()).getText(R.string.error_put_data), Toast.LENGTH_LONG).show();
         }
+        txtNumberOfCorrectAnswer.setText(socau);
+        txtYourReward.setText(giaithuong+" vnđ");
+
+        HighScoreModel highScoreModel = new HighScoreModel(LoginSession.getId(getContext()), Integer.parseInt(socau), giaithuong);
+        Call<HighScoreModel> call = APIClient.highScoreCRU().createOrUpdateHighScore(highScoreModel);
+        call.enqueue(new Callback<HighScoreModel>() {
+            @Override
+            public void onResponse(Call<HighScoreModel> call, Response<HighScoreModel> response) {
+                Log.d("ahihi123", "onResponse: "+response.code());
+            }
+
+            @Override
+            public void onFailure(Call<HighScoreModel> call, Throwable t) {
+                Log.d("ahihi123", "onFailure: "+t.getMessage());
+            }
+        });
 
         imgButtonHome.setOnClickListener(this);
         imgButtonRefresh.setOnClickListener(this);

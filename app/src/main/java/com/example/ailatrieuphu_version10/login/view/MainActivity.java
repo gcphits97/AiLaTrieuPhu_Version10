@@ -105,9 +105,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btnDiemCao:
                 startActivity(new Intent(MainActivity.this, HighScoreActivity.class));
+                finish();
                 break;
             case R.id.btnThongTin:
                 startActivity(new Intent(MainActivity.this, InformationActivity.class));
+                finish();
                 break;
             case R.id.btnDangXuat:
                 khungDangNhap.setVisibility(View.VISIBLE);

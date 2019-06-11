@@ -12,7 +12,9 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.ailatrieuphu_version10.player.fragment.VictoryFragment;
 import com.example.ailatrieuphu_version10.player.model.QuestionModel;
 import com.example.ailatrieuphu_version10.player.presenter.PlayerPresenterModel;
 import com.example.ailatrieuphu_version10.R;
@@ -32,7 +34,6 @@ public class PlayerActivity extends AppCompatActivity implements View.OnClickLis
     private CountDownTimer mCountDownTimer;
     private static final long START_TIME_IN_MILLIS = 30000;
     private long mTimeLeftInMillis = START_TIME_IN_MILLIS;
-//    private long RESUME_TIME_IN_MILLLIS;
     private boolean mTimeRunning;
     private long mEndTime;
     // ------------------------------------------
@@ -110,11 +111,8 @@ public class PlayerActivity extends AppCompatActivity implements View.OnClickLis
         String choice;
         switch (v.getId()) {
             case R.id.txtDungCuocChoi:
-//                RESUME_TIME_IN_MILLLIS = Long.parseLong(txtCountDownTimer.getText().toString());
-//                pauseTime();
-
                 Bundle bundle = new Bundle();
-                StopPlayingFragment stopPlayingFragment = new StopPlayingFragment();
+                StopPlayingFragment stopPlayingFragment = new StopPlayingFragment(this);
                 bundle.putString("socau", String.valueOf(i));
                 if (i == 0) {
                     bundle.putString("giaithuong", "0");
@@ -204,8 +202,14 @@ public class PlayerActivity extends AppCompatActivity implements View.OnClickLis
                             if (reward >= 1) {
                                 textViews[reward - 1].setBackgroundResource(R.drawable.question_background);
                             }
-                            i++;
-                            showQuestion(questionModelList);
+                            if (i != 14) {
+                                i++;
+                                showQuestion(questionModelList);
+                            } else {
+                                VictoryFragment victoryFragment = new VictoryFragment();
+                                frameBackground.setVisibility(View.VISIBLE);
+                                getSupportFragmentManager().beginTransaction().replace(R.id.fragmentParent, victoryFragment).commit();
+                            }
                         } else {
                             moveToEndGameFragment();
                         }
@@ -229,7 +233,7 @@ public class PlayerActivity extends AppCompatActivity implements View.OnClickLis
             endGameFragment.setArguments(bundle);
         } else if (i > 9) {
             bundle.putString("socau", String.valueOf(i));
-            bundle.putString("giaithuong", textViews[reward].getText().toString());
+            bundle.putString("giaithuong", "22.000.000");
             endGameFragment.setArguments(bundle);
         } else {
             bundle.putString("socau", String.valueOf(i));
@@ -244,26 +248,37 @@ public class PlayerActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     public void showQuestion(List<QuestionModel> questionList) {
         questionModelList = questionList;
-        resetTime(txtCountDownTimer);
-        txtQuestion.setText(questionModelList.get(i).getQuestion());
-        txtAnswerA.setText("A: " + questionModelList.get(i).getAnswera());
-        txtAnswerB.setText("B: " + questionModelList.get(i).getAnswerb());
-        txtAnswerC.setText("C: " + questionModelList.get(i).getAnswerc());
-        txtAnswerD.setText("D: " + questionModelList.get(i).getAnswerd());
+        if (i >= 0 && i <= 14) {
+            resetTime(txtCountDownTimer);
+            txtQuestion.setText(questionModelList.get(i).getQuestion());
+            txtAnswerA.setText("A: " + questionModelList.get(i).getAnswera());
+            txtAnswerB.setText("B: " + questionModelList.get(i).getAnswerb());
+            txtAnswerC.setText("C: " + questionModelList.get(i).getAnswerc());
+            txtAnswerD.setText("D: " + questionModelList.get(i).getAnswerd());
 
-        txtAnswerB.setEnabled(true);
-        txtAnswerC.setEnabled(true);
-        txtAnswerD.setEnabled(true);
-        txtAnswerA.setEnabled(true);
-        txtAnswerA.setBackgroundResource(R.drawable.question_background);
-        txtAnswerB.setBackgroundResource(R.drawable.question_background);
-        txtAnswerC.setBackgroundResource(R.drawable.question_background);
-        txtAnswerD.setBackgroundResource(R.drawable.question_background);
+            txtAnswerB.setEnabled(true);
+            txtAnswerC.setEnabled(true);
+            txtAnswerD.setEnabled(true);
+            txtAnswerA.setEnabled(true);
+            txtAnswerA.setBackgroundResource(R.drawable.question_background);
+            txtAnswerB.setBackgroundResource(R.drawable.question_background);
+            txtAnswerC.setBackgroundResource(R.drawable.question_background);
+            txtAnswerD.setBackgroundResource(R.drawable.question_background);
 
-        txtAnswerA.setOnClickListener(this);
-        txtAnswerB.setOnClickListener(this);
-        txtAnswerC.setOnClickListener(this);
-        txtAnswerD.setOnClickListener(this);
+            txtAnswerA.setOnClickListener(this);
+            txtAnswerB.setOnClickListener(this);
+            txtAnswerC.setOnClickListener(this);
+            txtAnswerD.setOnClickListener(this);
+        }
+    }
+
+    @Override
+    public void cancelCountDownTimer() {
+        if (mTimeRunning) {
+            pauseTime();
+        } else {
+            Toast.makeText(this, getText(R.string.error_get_question), Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void checkResult(String choice) {
@@ -273,7 +288,7 @@ public class PlayerActivity extends AppCompatActivity implements View.OnClickLis
             getResult(false, questionModelList.get(i).getRightanswer());
         }
     }
-
+//-------- start configuration countdown timer --------//
     public void startTime(final TextView txtCountDownTimer) {
         mEndTime = System.currentTimeMillis() + mTimeLeftInMillis;
         mCountDownTimer = new CountDownTimer(mTimeLeftInMillis, 1000) {
@@ -308,15 +323,8 @@ public class PlayerActivity extends AppCompatActivity implements View.OnClickLis
         mTimeLeftInMillis = START_TIME_IN_MILLIS;
         updateCountDownText(txtCountDownTimer);
         startTime(txtCountDownTimer);
-        mTimeRunning = true;
     }
-
-    public void resumeTime(TextView txtCountDownTimer) {
-        mTimeLeftInMillis = 20000;
-        updateCountDownText(txtCountDownTimer);
-        startTime(txtCountDownTimer);
-        mTimeRunning = true;
-    }
+//-------- end configuration countdown timer --------//
 
     @Override
     public void onConfigurationChanged(Configuration newConfig) {

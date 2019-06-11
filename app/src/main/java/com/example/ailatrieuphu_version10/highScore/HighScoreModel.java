@@ -1,5 +1,7 @@
 package com.example.ailatrieuphu_version10.highScore;
 
+import com.example.ailatrieuphu_version10.login.model.UserModel;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,9 +10,16 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class HighScoreModel {
-    private String username;
-    private int bestPlay;
-    private String bestReward;
-    private String time;
+    private int user_model_id;
+    private UserModel userModel;
+    private int bestplay;
+    private String bestreward;
+    private String playtime;
     private double tyle;
+
+    public HighScoreModel(int user_model_id, int bestplay, String bestreward) {
+        this.user_model_id = user_model_id;
+        this.bestplay = bestplay;
+        this.bestreward = bestreward;
+    }
 }
