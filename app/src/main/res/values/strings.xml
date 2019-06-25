@@ -78,7 +78,7 @@
     <string name="error_get_question">Đã xảy ra lỗi trong quá trình tải dữ liệu. Vui lòng thử lại</string>
     <string name="error_put_data">Đã xảy ra lỗi trong quá trình truyền dữ liệu.</string>
     <string name="high_score">Bảng xếp hạng</string>
-    <string name="stt">STT</string>
+    <string name="stt">Hạng</string>
     <string name="user_hs">Người chơi</string>
     <string name="best_reward">Giải thưởng</string>
     <string name="best_score">Số câu</string>
@@ -90,4 +90,17 @@
     <string name="app_info">Thông tin ứng dụng</string>
     <string name="victory">Victory</string>
     <string name="ok">Ok</string>
+    <string name="taiday">tại đây</string>
+    <string name="password_retrieval">Bạn quên mật khẩu? Lấy lại mật khẩu</string>
+    <string name="nhap_lai_mat_khau">Nhập lại mật khẩu</string>
+    <string name="confirm">Xác nhận</string>
+    <string name="title_password_retrieval">Lấy lại mật khẩu</string>
+    <string name="error_password_retrieval">Mật khẩu không khớp</string>
+    <string name="password_retrieval_success">Thay đổi mật khẩu thành công! Hệ thống sẽ tự động đăng nhập.</string>
+    <string name="password_retrieval_fail">Tên đăng nhập không đúng!</string>
+    <string name="internet_connection_error">Kết nối Internet không ổn định. Vui lòng thử lại!</string>
+    <string name="a">A</string>
+    <string name="b">B</string>
+    <string name="c">C</string>
+    <string name="d">D</string>
 </resources>

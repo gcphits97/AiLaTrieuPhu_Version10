@@ -18,4 +18,8 @@ public class APIClient {
     public static HighScoreJsonApi highScoreCRU() {
         return Client.getClient(baseUrl).create(HighScoreJsonApi.class);
     }
+
+    public static LoginJsonApi passwordRetrieval() {
+        return Client.getClient(baseUrl).create(LoginJsonApi.class);
+    }
 }

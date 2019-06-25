@@ -10,9 +10,12 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.ailatrieuphu_version10.R;
+import com.example.ailatrieuphu_version10.login.session.LoginSession;
 import com.example.ailatrieuphu_version10.login.view.MainActivity;
 import com.example.ailatrieuphu_version10.retrofit.APIClient;
 
@@ -27,6 +30,8 @@ public class HighScoreActivity extends AppCompatActivity {
     Toolbar toolbarBangXepHang;
     ImageButton imageButtonBack;
     private HighScoreAdapter highScoreAdapter;
+    LinearLayout playerHighScore;
+    TextView txtSTTPlayer, txtUsernamePlayer, txtSoCauTraLoiDungPlayer, txtBestRewardPlayer, txtTimePlayer, txtTyLeTraLoiDungPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +44,13 @@ public class HighScoreActivity extends AppCompatActivity {
         recyclerViewBangXepHang = findViewById(R.id.recyclerViewBangXepHang);
         toolbarBangXepHang = findViewById(R.id.toolbarBangXepHang);
         imageButtonBack = findViewById(R.id.imageButtonBack);
+        playerHighScore = findViewById(R.id.playerHighScore);
+        txtSTTPlayer = findViewById(R.id.txtSTTPlayer);
+        txtUsernamePlayer = findViewById(R.id.txtUsernamePlayer);
+        txtSoCauTraLoiDungPlayer = findViewById(R.id.txtSoCauTraLoiDungPlayer);
+        txtBestRewardPlayer = findViewById(R.id.txtBestRewardPlayer);
+        txtTimePlayer = findViewById(R.id.txtTimePlayer);
+        txtTyLeTraLoiDungPlayer = findViewById(R.id.txtTyLeTraLoiDungPlayer);
 
         getSupportActionBar();
         toolbarBangXepHang.setTitle("");
@@ -48,12 +60,26 @@ public class HighScoreActivity extends AppCompatActivity {
         call.enqueue(new Callback<List<HighScoreModel>>() {
             @Override
             public void onResponse(Call<List<HighScoreModel>> call, Response<List<HighScoreModel>> response) {
-                if (response.body() != null) {
-                    highScoreAdapter = new HighScoreAdapter(getApplicationContext(), response.body());
+                List<HighScoreModel> highScoreModelList = response.body();
+                if (highScoreModelList != null) {
+                    highScoreAdapter = new HighScoreAdapter(getApplicationContext(), highScoreModelList);
                     LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
                     recyclerViewBangXepHang.setLayoutManager(layoutManager);
                     recyclerViewBangXepHang.setAdapter(highScoreAdapter);
                     highScoreAdapter.notifyDataSetChanged();
+
+
+                    for (int i = 0; i < highScoreModelList.size(); i++) {
+                        HighScoreModel highScoreModel = highScoreModelList.get(i);
+                        if (highScoreModel.getUserModel().getId() == LoginSession.getId(getApplicationContext())) {
+                            txtSTTPlayer.setText(String.valueOf(i + 1));
+                            txtBestRewardPlayer.setText(highScoreModel.getBestreward());
+                            txtSoCauTraLoiDungPlayer.setText(String.valueOf(highScoreModel.getBestplay()));
+                            txtTimePlayer.setText(highScoreModel.getPlaytime());
+                            txtTyLeTraLoiDungPlayer.setText(String.valueOf(highScoreModel.getTyle()));
+                            txtUsernamePlayer.setText(highScoreModel.getUserModel().getUsername());
+                        }
+                    }
                 } else {
                     Toast.makeText(HighScoreActivity.this, getText(R.string.error_high_score), Toast.LENGTH_LONG).show();
                 }
@@ -61,7 +87,7 @@ public class HighScoreActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<List<HighScoreModel>> call, Throwable t) {
-                Toast.makeText(HighScoreActivity.this, getText(R.string.error_put_data)+t.getMessage(), Toast.LENGTH_LONG).show();
+                Toast.makeText(HighScoreActivity.this, getText(R.string.error_put_data) + t.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
 

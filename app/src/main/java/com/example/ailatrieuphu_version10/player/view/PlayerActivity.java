@@ -14,6 +14,7 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.ailatrieuphu_version10.player.fragment.CallPhoneFragment;
 import com.example.ailatrieuphu_version10.player.fragment.VictoryFragment;
 import com.example.ailatrieuphu_version10.player.model.QuestionModel;
 import com.example.ailatrieuphu_version10.player.presenter.PlayerPresenterModel;
@@ -24,6 +25,7 @@ import com.example.ailatrieuphu_version10.player.fragment.StopPlayingFragment;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Random;
 
 public class PlayerActivity extends AppCompatActivity implements View.OnClickListener, PlayerViewImp {
     private TextView txt5050, txtTroGiupTuKhanGia, txtGoiDienChoNguoiThan, txtCountDownTimer, txtQuestion, txtAnswerA, txtAnswerB, txtAnswerC,
@@ -35,7 +37,7 @@ public class PlayerActivity extends AppCompatActivity implements View.OnClickLis
     private static final long START_TIME_IN_MILLIS = 30000;
     private long mTimeLeftInMillis = START_TIME_IN_MILLIS;
     private boolean mTimeRunning;
-    private long mEndTime;
+//    private long mEndTime;
     // ------------------------------------------
 
     private static int i;
@@ -71,6 +73,8 @@ public class PlayerActivity extends AppCompatActivity implements View.OnClickLis
         updateCountDownText(txtCountDownTimer);
 
         txtDungCuocChoi.setOnClickListener(this);
+        txtGoiDienChoNguoiThan.setOnClickListener(this);
+        txt5050.setOnClickListener(this);
     }
 
     @Override
@@ -88,7 +92,13 @@ public class PlayerActivity extends AppCompatActivity implements View.OnClickLis
         }, MUSIC_TIME_OPENING);
     }
 
-//    public String checkDigit(int number) {
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        gameMusic.stop();
+    }
+
+    //    public String checkDigit(int number) {
 //        return number < 10 ? "0"+number : String.valueOf(number);
 //    }
 
@@ -169,6 +179,85 @@ public class PlayerActivity extends AppCompatActivity implements View.OnClickLis
                 pauseTime();
                 checkResult(choice);
                 break;
+            case R.id.txtGoiDienChoNguoiThan:
+                setCallPhoneEvent();
+                break;
+            case R.id.txt5050:
+                setEventFiftyPercent();
+                break;
+        }
+    }
+
+    private void setEventFiftyPercent() {
+        if (questionModelList.size() != 0) {
+            txt5050.setBackgroundResource(R.drawable.unfiftypercent);
+            txt5050.setEnabled(false);
+            String answer = questionModelList.get(i).getRightanswer();
+            if (answer.equals("A")) {
+                txtAnswerB.setEnabled(false);
+                txtAnswerB.setText("");
+                txtAnswerC.setEnabled(false);
+                txtAnswerC.setText("");
+            } else if (answer.equals("B")) {
+                txtAnswerD.setEnabled(false);
+                txtAnswerD.setText("");
+                txtAnswerC.setEnabled(false);
+                txtAnswerC.setText("");
+            } else if (answer.equals("C")) {
+                txtAnswerA.setEnabled(false);
+                txtAnswerA.setText("");
+                txtAnswerD.setEnabled(false);
+                txtAnswerD.setText("");
+            } else {
+                txtAnswerB.setEnabled(false);
+                txtAnswerB.setText("");
+                txtAnswerA.setEnabled(false);
+                txtAnswerA.setText("");
+            }
+        }
+    }
+
+    private void setCallPhoneEvent() {
+        String talkingResult = "";
+        if (questionModelList.size() != 0) {
+            txtGoiDienChoNguoiThan.setBackgroundResource(R.drawable.untelephone);
+            txtGoiDienChoNguoiThan.setEnabled(false);
+            txtAnswerB.setEnabled(false);
+            txtAnswerC.setEnabled(false);
+            txtAnswerA.setEnabled(false);
+            txtAnswerD.setEnabled(false);
+            String resultQuestion = questionModelList.get(i).getRightanswer();
+            Random random = new Random();
+            int i = random.nextInt(5);
+            switch (i) {
+                case 0:
+                    talkingResult = "Rất tiếc, tôi không biết câu trả lời của câu hỏi này :( Chúc bạn may mắn.";
+                    break;
+
+                case 1:
+                    talkingResult = "Tôi đã tìm kiếm kết quả trên Google ^^ Tin tôi đi. Đáp án là " + resultQuestion;
+                    break;
+
+                case 2:
+                    talkingResult = "Tôi không chắc lắm nhưng có lẽ đáp án là " + resultQuestion;
+                    break;
+
+                case 3:
+                    talkingResult = "Nếu tôi là bạn thì tôi sẽ chọn " + resultQuestion + ". Nhưng tôi không phải là bạn :v";
+                    break;
+
+                case 4:
+                    talkingResult = "Tôi khuyên bạn chọn đáp án " + resultQuestion + ". Chúc bạn may mắn!";
+                    break;
+            }
+            Bundle bundle = new Bundle();
+            CallPhoneFragment callPhoneFragment = new CallPhoneFragment();
+            bundle.putString("text", talkingResult);
+            callPhoneFragment.setArguments(bundle);
+            frameBackground.setVisibility(View.VISIBLE);
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragmentParent, callPhoneFragment).commit();
+        } else {
+            Toast.makeText(this, getText(R.string.internet_connection_error), Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -248,28 +337,27 @@ public class PlayerActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     public void showQuestion(List<QuestionModel> questionList) {
         questionModelList = questionList;
-        if (i >= 0 && i <= 14) {
-            resetTime(txtCountDownTimer);
-            txtQuestion.setText(questionModelList.get(i).getQuestion());
-            txtAnswerA.setText("A: " + questionModelList.get(i).getAnswera());
-            txtAnswerB.setText("B: " + questionModelList.get(i).getAnswerb());
-            txtAnswerC.setText("C: " + questionModelList.get(i).getAnswerc());
-            txtAnswerD.setText("D: " + questionModelList.get(i).getAnswerd());
 
-            txtAnswerB.setEnabled(true);
-            txtAnswerC.setEnabled(true);
-            txtAnswerD.setEnabled(true);
-            txtAnswerA.setEnabled(true);
-            txtAnswerA.setBackgroundResource(R.drawable.question_background);
-            txtAnswerB.setBackgroundResource(R.drawable.question_background);
-            txtAnswerC.setBackgroundResource(R.drawable.question_background);
-            txtAnswerD.setBackgroundResource(R.drawable.question_background);
+        resetTime(txtCountDownTimer);
+        txtQuestion.setText(questionModelList.get(i).getQuestion());
+        txtAnswerA.setText("A: " + questionModelList.get(i).getAnswera());
+        txtAnswerB.setText("B: " + questionModelList.get(i).getAnswerb());
+        txtAnswerC.setText("C: " + questionModelList.get(i).getAnswerc());
+        txtAnswerD.setText("D: " + questionModelList.get(i).getAnswerd());
 
-            txtAnswerA.setOnClickListener(this);
-            txtAnswerB.setOnClickListener(this);
-            txtAnswerC.setOnClickListener(this);
-            txtAnswerD.setOnClickListener(this);
-        }
+        txtAnswerB.setEnabled(true);
+        txtAnswerC.setEnabled(true);
+        txtAnswerD.setEnabled(true);
+        txtAnswerA.setEnabled(true);
+        txtAnswerA.setBackgroundResource(R.drawable.question_background);
+        txtAnswerB.setBackgroundResource(R.drawable.question_background);
+        txtAnswerC.setBackgroundResource(R.drawable.question_background);
+        txtAnswerD.setBackgroundResource(R.drawable.question_background);
+
+        txtAnswerA.setOnClickListener(this);
+        txtAnswerB.setOnClickListener(this);
+        txtAnswerC.setOnClickListener(this);
+        txtAnswerD.setOnClickListener(this);
     }
 
     @Override
@@ -290,7 +378,7 @@ public class PlayerActivity extends AppCompatActivity implements View.OnClickLis
     }
 //-------- start configuration countdown timer --------//
     public void startTime(final TextView txtCountDownTimer) {
-        mEndTime = System.currentTimeMillis() + mTimeLeftInMillis;
+//        mEndTime = System.currentTimeMillis() + mTimeLeftInMillis;
         mCountDownTimer = new CountDownTimer(mTimeLeftInMillis, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
@@ -326,34 +414,34 @@ public class PlayerActivity extends AppCompatActivity implements View.OnClickLis
     }
 //-------- end configuration countdown timer --------//
 
-    @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-        if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT || newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            openingMusic.stop();
-            gameMusic.stop();
-        }
-    }
-
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putLong("millisLeft", mTimeLeftInMillis);
-        outState.putBoolean("timeRunning", mTimeRunning);
-        outState.putLong("endTime", mEndTime);
-    }
-
-    @Override
-    protected void onRestoreInstanceState(Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
-        mTimeLeftInMillis = savedInstanceState.getLong("millisLeft");
-        mTimeRunning = savedInstanceState.getBoolean("timeRunning");
-        updateCountDownText(txtCountDownTimer);
-
-        if (mTimeRunning) {
-            mEndTime = savedInstanceState.getLong("endTime");
-            mTimeLeftInMillis = mEndTime - System.currentTimeMillis();
-            startTime(txtCountDownTimer);
-        }
-    }
+//    @Override
+//    public void onConfigurationChanged(Configuration newConfig) {
+//        super.onConfigurationChanged(newConfig);
+//        if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT || newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+//            openingMusic.stop();
+//            gameMusic.stop();
+//        }
+//    }
+//
+//    @Override
+//    protected void onSaveInstanceState(Bundle outState) {
+//        super.onSaveInstanceState(outState);
+//        outState.putLong("millisLeft", mTimeLeftInMillis);
+//        outState.putBoolean("timeRunning", mTimeRunning);
+//        outState.putLong("endTime", mEndTime);
+//    }
+//
+//    @Override
+//    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+//        super.onRestoreInstanceState(savedInstanceState);
+//        mTimeLeftInMillis = savedInstanceState.getLong("millisLeft");
+//        mTimeRunning = savedInstanceState.getBoolean("timeRunning");
+//        updateCountDownText(txtCountDownTimer);
+//
+//        if (mTimeRunning) {
+//            mEndTime = savedInstanceState.getLong("endTime");
+//            mTimeLeftInMillis = mEndTime - System.currentTimeMillis();
+//            startTime(txtCountDownTimer);
+//        }
+//    }
 }

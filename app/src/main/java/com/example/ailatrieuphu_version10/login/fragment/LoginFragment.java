@@ -29,7 +29,7 @@ import java.util.Objects;
 public class LoginFragment extends Fragment implements View.OnClickListener, LoginViewImp {
     EditText edtTenDangNhap, edtMatKhau;
     Button btnDangNhap, btnHuy, btnChoiNgay, btnDiemCao, btnThongTin, btnDangNhapMain, btnDangXuat, btnChoi;
-    TextView txtDangKy, txtLuuYTenDangNhapFormDangNhap, txtLuuYMatKhauFormDangNhap;
+    TextView txtDangKy, txtLuuYTenDangNhapFormDangNhap, txtLuuYMatKhauFormDangNhap, txtPasswordRetrieval;
     private FrameLayout frameBackgroundMain;
     private LinearLayout khungDangNhap;
     private LoginPresenterModel loginPresenterModel;
@@ -43,6 +43,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener, Log
         btnDangNhap = myView.findViewById(R.id.btnDangNhap);
         btnHuy = myView.findViewById(R.id.btnHuy);
         txtDangKy = myView.findViewById(R.id.txtDangKy);
+        txtPasswordRetrieval = myView.findViewById(R.id.txtPasswordRetrieval);
         txtLuuYTenDangNhapFormDangNhap = myView.findViewById(R.id.txtLuuYTenDangNhapFormDangNhap);
         txtLuuYMatKhauFormDangNhap = myView.findViewById(R.id.txtLuuYMatKhauFormDangNhap);
 
@@ -60,6 +61,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener, Log
         btnDangNhap.setOnClickListener(this);
         btnHuy.setOnClickListener(this);
         txtDangKy.setOnClickListener(this);
+        txtPasswordRetrieval.setOnClickListener(this);
         return myView;
     }
 
@@ -79,6 +81,9 @@ public class LoginFragment extends Fragment implements View.OnClickListener, Log
                 break;
             case R.id.txtDangKy:
                 Objects.requireNonNull(getActivity()).getSupportFragmentManager().beginTransaction().replace(R.id.fragmentParentMain, new RegisterFragment()).commit();
+                break;
+            case R.id.txtPasswordRetrieval:
+                Objects.requireNonNull(getActivity()).getSupportFragmentManager().beginTransaction().replace(R.id.fragmentParentMain, new PasswordRetrievalFragment()).commit();
                 break;
         }
     }

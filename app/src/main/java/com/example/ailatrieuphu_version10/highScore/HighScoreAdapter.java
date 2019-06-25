@@ -10,23 +10,24 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.ailatrieuphu_version10.R;
+import com.example.ailatrieuphu_version10.login.session.LoginSession;
 
 import java.util.List;
 
 public class HighScoreAdapter extends RecyclerView.Adapter<HighScoreAdapter.ViewHoder> {
 
-    Context context;
-    List<HighScoreModel> highScoreModelList;
+    private Context context;
+    private List<HighScoreModel> highScoreModelList;
 
-    public HighScoreAdapter(Context context, List<HighScoreModel> highScoreModelList) {
+    HighScoreAdapter(Context context, List<HighScoreModel> highScoreModelList) {
         this.context = context;
         this.highScoreModelList = highScoreModelList;
     }
 
-    public class ViewHoder extends RecyclerView.ViewHolder {
+    class ViewHoder extends RecyclerView.ViewHolder {
         LinearLayout background;
         TextView txtSTT, txtUsername, txtSoCauTraLoiDung, txtBestReward, txtTime, txtTyLeTraLoiDung;
-        public ViewHoder(@NonNull View itemView) {
+        ViewHoder(@NonNull View itemView) {
             super(itemView);
             background = itemView.findViewById(R.id.background);
             txtSTT = itemView.findViewById(R.id.txtSTT);
@@ -48,12 +49,22 @@ public class HighScoreAdapter extends RecyclerView.Adapter<HighScoreAdapter.View
         HighScoreModel highScoreModel = highScoreModelList.get(i);
 
         viewHoder.background.setBackgroundResource(R.color.colorPrimaryTransparent);
-        viewHoder.txtSTT.setText(String.valueOf(i+1));
+        viewHoder.txtSTT.setText(String.valueOf(highScoreModelList.indexOf(highScoreModel) + 1));
         viewHoder.txtUsername.setText(highScoreModel.getUserModel().getUsername());
         viewHoder.txtSoCauTraLoiDung.setText(String.valueOf(highScoreModel.getBestplay()));
         viewHoder.txtBestReward.setText(highScoreModel.getBestreward());
         viewHoder.txtTime.setText(highScoreModel.getPlaytime());
         viewHoder.txtTyLeTraLoiDung.setText(String.valueOf(highScoreModel.getTyle()));
+
+        if (highScoreModel.getUserModel().getId() == LoginSession.getId(context)) {
+            viewHoder.background.setBackgroundResource(R.color.colorSuccess);
+            HighScoreModel sendData = new HighScoreModel();
+            sendData.setTyle(highScoreModel.getTyle());
+            sendData.setBestplay(highScoreModel.getBestplay());
+            sendData.setBestreward(highScoreModel.getBestreward());
+            sendData.setPlaytime(highScoreModel.getPlaytime());
+            sendData.setUserModel(highScoreModel.getUserModel());
+        }
     }
 
     @Override
