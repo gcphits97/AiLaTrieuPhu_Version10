@@ -4,8 +4,12 @@
     android:orientation="vertical"
     android:background="@color/colorPrimary"
     android:gravity="center_vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:paddingTop="40dp"
+    android:paddingBottom="40dp"
+    android:paddingStart="10dp"
+    android:paddingEnd="10dp"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
     <LinearLayout
         android:weightSum="10"
         android:orientation="horizontal"
@@ -22,14 +26,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 tools:ignore="UselessParent">
+
                 <TextView
                     android:id="@+id/txtTyLeA"
-                    android:textSize="12sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:textAlignment="center"
                     android:textColor="@color/colorBlack"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:textSize="12sp" />
                 <ImageView
+                    android:id="@+id/imageViewA"
                     tools:ignore="ContentDescription"
                     android:layout_weight="1"
                     android:src="@color/colorPrimaryTransparent"
@@ -67,6 +73,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
                 <ImageView
+                    android:id="@+id/imageViewB"
                     tools:ignore="ContentDescription"
                     android:layout_weight="1"
                     android:src="@color/colorPrimaryTransparent"
@@ -104,6 +111,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
                 <ImageView
+                    android:id="@+id/imageViewC"
                     tools:ignore="ContentDescription"
                     android:layout_weight="1"
                     android:src="@color/colorPrimaryTransparent"
@@ -141,6 +149,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
                 <ImageView
+                    android:id="@+id/imageViewD"
                     android:layout_weight="1"
                     android:src="@color/colorPrimaryTransparent"
                     android:background="@color/colorBlack"

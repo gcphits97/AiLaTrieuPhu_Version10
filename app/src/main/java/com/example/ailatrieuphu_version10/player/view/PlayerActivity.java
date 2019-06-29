@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.ailatrieuphu_version10.player.fragment.CallPhoneFragment;
+import com.example.ailatrieuphu_version10.player.fragment.SpectatorFragment;
 import com.example.ailatrieuphu_version10.player.fragment.VictoryFragment;
 import com.example.ailatrieuphu_version10.player.model.QuestionModel;
 import com.example.ailatrieuphu_version10.player.presenter.PlayerPresenterModel;
@@ -75,6 +76,7 @@ public class PlayerActivity extends AppCompatActivity implements View.OnClickLis
         txtDungCuocChoi.setOnClickListener(this);
         txtGoiDienChoNguoiThan.setOnClickListener(this);
         txt5050.setOnClickListener(this);
+        txtTroGiupTuKhanGia.setOnClickListener(this);
     }
 
     @Override
@@ -184,6 +186,10 @@ public class PlayerActivity extends AppCompatActivity implements View.OnClickLis
                 break;
             case R.id.txt5050:
                 setEventFiftyPercent();
+                break;
+            case R.id.txtTroGiupTuKhanGia:
+                frameBackground.setVisibility(View.VISIBLE);
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragmentParent, new SpectatorFragment()).commit();
                 break;
         }
     }
